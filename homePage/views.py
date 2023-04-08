@@ -2,9 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def homeView(request, *args, **kwargs):
-    print(args, kwargs)
-    print(request.user)
     context = {
-
+        'user': request.user,
     }
-    return HttpResponse('Hola mundo')
+    return render(request, 'home.html', context)
