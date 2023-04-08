@@ -1,5 +1,9 @@
+<div>
 {% if user.is_authenticated %}
-<h1>Hola {{user}}</h1>
+<a href='#'>Log out</a>
+<br>
 {% else %}
-<h1>No esta registrado</h1>
+<a href='#'>Log in</a>
+<a href='#'>Register</a>
 {% endif %}
+</div>
