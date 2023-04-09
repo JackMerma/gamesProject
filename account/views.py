@@ -27,12 +27,32 @@ def registerView(request):
             # se usa el modelo de ususario en django
             user = User.objects.create_user(username = userName, password = password1, email = mail, first_name = firstName, last_name = lastName)
             user.save()
-            return redirect('/')
+            return render(request, 'login.html', {})
 
         context = {
             'error': error,
         }
         return render(request, 'register.html', context)
     else:
-        context = {}
-        return render(request, 'register.html', context)
+        return render(request, 'register.html', {})
+
+def loginView(request):
+    if request.method == 'POST':
+        userName = request.POST['userName']
+        password = request.POST['password']
+        user = auth.authenticate(username = userName, password = password)
+
+        error = ''
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect("/")
+        else:
+            error = 'invalid credentials'
+
+        context = {
+            'error': error,
+        }
+        return render(request, 'login.html', context)
+    else:
+        return render(request, 'login.html', {})
