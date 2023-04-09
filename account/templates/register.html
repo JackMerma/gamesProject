@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Registration</title>
+    </header>
+    <h2>Registro</h2>
+    <body>
+        <form action='register' method='POST'>
+            {% csrf_token %}
+            <input type='text' name='firstName' placeholder='First Name'><br>
+            <input type='text' name='lastName' placeholder='Last Name'><br>
+            <input type='text' name='userName' placeholder='user'><br>
+            <input type='email' name='mail' placeholder='Email'><br>
+            <input type='text' name='birthday' placeholder='birthday'><br>
+            <input type='text' name='password1' placeholder='Password'><br>
+            <input type='text' name='password2' placeholder='Confirm your password'><br>
+            <input type='submit' value='Submit'>
+        </form>
+        <a>{{ error  }}</a>
+    </body>
+</html>
+
