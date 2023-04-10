@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'user',
     'homePage',
     'account',
+    #allauth django
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
