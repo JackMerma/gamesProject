@@ -48,6 +48,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'alllauth.account.auth_backends.AuthenticationBackend'
+        
+] 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
