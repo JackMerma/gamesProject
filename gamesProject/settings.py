@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'homePage',
-    'account',
-    #allauth django
+    #'account',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -53,6 +52,8 @@ AUTHENTICATION_BACKENDS = [
     'alllauth.account.auth_backends.AuthenticationBackend'
         
 ] 
+
+SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
