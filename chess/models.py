@@ -1,8 +1,11 @@
 from django.db import models
 from problem.models import Problem
+from solution.models import Solution
 
 class ChessProblem(Problem):
-    imageSolution = models.ImageField(null=True, blank=True)
-    imageSubmit = models.ImageField(null=True, blank=True)
-    fileSolution = models.FileField(null=True, blank=True)
-    fileSubmit = models.FileField(null=True, blank=True)
+    imageChessProblem = models.ImageField(null=True, blank=True)
+    fileChessProblem = models.FileField(null=True, blank=True)
+
+class ChessSolution(Solution):
+    imageChessSolution = models.ImageField(null=True, blank=True)
+    fileChessSolution = models.FileField(null=True, blank=True)
