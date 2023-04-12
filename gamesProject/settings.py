@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user',
     'homePage',
     'account',
+    'problem',
 ]
 
 MIDDLEWARE = [
