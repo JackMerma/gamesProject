@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html>
     <header>
-        <title></title>
+        <title>Problem</title>
     </header>
     <body>
-        <h3>{{ object.nameProblem }}</h3>
-        <p>{{ object.description }}</p>
+        <div>
+            <h3>{{ object.nameProblem }}</h3>
+            <p>{{ object.description }}</p>
+        </div>
+        <div>
+            <h4>Try to solve this problem</h4>
+            <div class='mainBox'>
+                <div class='upBox'>
+                    <div class='leftBox'>
+                        <img src='#' alt='imageChessProblem'>
+                    </div>
+                    <div class='rightBox'>
+                        <img src='#' alt='imageChessSolution'>
+                    </div>
+                </div>
+                <div class='downBox'>
+                    <div class='codeBox'>
+                        <form action='.' method='GET'>
+                            <textarea></textarea>
+                            <br>
+                            <br>
+                            <input type='submit' value='Send'/>
+                        </form>
+                    </div>
+                    <div class='errorBox'>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <a href='../../problemset/'>back to problemset</a>
     </body>
