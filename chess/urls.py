@@ -7,5 +7,8 @@ urlpatterns = [
     path('', views.chessView, name='Chess'),
 
     #Url donde se mostrara el listado de problemas
-    path('list/', views.chessListView, name='ChessList'),
+    path('problemset/', views.chessListView, name='ChessList'),
+
+    #Url para mostrar la descripcion de cada problema
+    path('problem/<int:myId>/', views.chessShowObjectView, name = 'browsing')
 ]
