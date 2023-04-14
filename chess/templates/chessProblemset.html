@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title></title>
+    </header>
+    <body>
+        <h2>Problemset</h2>
+        {% for instance in objectList %}
+        <p>
+        <a href="{{ instance.get_absolute_url }}">
+            {{ instance.id  }} - {{ instance.nameProblem }}
+        </a>
+        </p>
+        {% endfor %}
+
+        <a href='../'>back to chess</a>
+    </body>
+</html>
+
