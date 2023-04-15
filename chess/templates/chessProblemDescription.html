@@ -30,7 +30,11 @@
                         <img src='#' alt='imageChessProblem'>
                     </div>
                     <div class='rightBox'>
+                        {% if image %}
+                        <img src='{{ image.url }}' alt='imageChessSolution'>
+                        {% else %}
                         <img src='#' alt='imageChessSolution'>
+                        {% endif %}
                     </div>
                 </div>
                 <div class='downBox'>
