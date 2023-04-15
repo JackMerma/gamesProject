@@ -27,7 +27,7 @@ def create(code, data):
     # statements
     exp = validate(code)
     if exp[0]:
-        return [True, exp[1]] #retornando que hubo un error
+        return exp[1] #retornando el error
 
     # running code
     try:
@@ -35,7 +35,7 @@ def create(code, data):
         code = putDataArguments(code, data, oldCode)
         print(code)
         exec(code)
-        return [False, ""]
+        return ""
     except SyntaxError as err:
         error_class = err.__class__.__name__
         detail = err.args[0]
@@ -45,4 +45,4 @@ def create(code, data):
         detail = err.args[0]
         cl, exc, tb = sys.exc_info()
         line_number = traceback.extract_tb(tb)[-1][1]
-    return [True, "%s at line %d: %s" % (error_class, line_number, detail)]
+    return "%s at line %d: %s" % (error_class, line_number, detail)
