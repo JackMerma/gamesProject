@@ -132,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'chess_static'),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'chess/media/images/chessSolutions')
