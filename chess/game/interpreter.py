@@ -21,10 +21,14 @@ def putPixels(img, picture):
 
 def draw(data):
     picture = data[0]
+    userName = data[1]
+    problemId = data[2]
+    oldCode = data[3]
+
     # genera la imagen
     img = Image.new('RGB', (SIZE, SIZE))
     img = putPixels(img, picture)
-    file_name = data[1] + data[2] + ".jpg"
+    file_name = userName + problemId + ".jpg"
     path = os.path.join(BASE_DIR, "static/images/" + file_name)
     img.save(path)
 
@@ -43,6 +47,7 @@ def draw(data):
     with open(path, 'rb') as image_file:
         file = File(image_file)
         lastSolution.imageChessSolution.save(file_name, file)
+    lastSolution.codeChessSolution = oldCode
     lastSolution.save()
 
     # eliminando de static
