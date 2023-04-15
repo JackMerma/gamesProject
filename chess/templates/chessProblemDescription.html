@@ -2,8 +2,22 @@
 <html>
     <header>
         <title>Problem</title>
+        <script src='/static/codemirror/lib/codemirror.js'></script>
+        <link rel='stylesheet' href='/static/codemirror/lib/codemirror.css'/>
+        <script src='/static/codemirror/mode/python/python.js'></script>
+        <script src='/static/codemirror/addon/selection/active-line.js'></script>
+        <script src='/static/codemirror/addon/edit/matchbrackets.js'></script>
+
+        <link rel='stylesheet' href='/static/codemirror/theme/nord.css'/>
+        <link rel='stylesheet' href='/static/codemirror/theme/lucario.css'/>
+        <link rel='stylesheet' href='/static/codemirror/theme/gruvbox-dark.css'/>
+        <link rel='stylesheet' href='/static/codemirror/theme/eclipse.css'/>
+        <link rel='stylesheet' href='/static/codemirror/theme/elegant.css'/>
+        <link rel='stylesheet' href='/static/codemirror/theme/xq-light.css'/>
+        <link rel='stylesheet' href='/static/codemirror/theme/mdn-like.css'/>
     </header>
     <body>
+        {% load static %}
         <div>
             <h3>{{ object.nameProblem }}</h3>
             <p>{{ object.description }}</p>
@@ -22,13 +36,22 @@
                 <div class='downBox'>
                     <div class='codeBox'>
                         <form action='.' method='GET'>
-                            <textarea></textarea>
+                            <textarea id='editor' name='input'>{{ code }}</textarea>
+                            <script>
+                                var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+                                    mode: "python",
+                                    theme: "mdn-like",
+                                    lineNumbers: true
+                                });
+                                editor.setSize("550", "300");
+                            </script>
                             <br>
                             <br>
                             <input type='submit' value='Send'/>
                         </form>
                     </div>
                     <div class='errorBox'>
+                        <a id='errorText'>{{ error }}</a>
                     </div>
                 </div>
             </div>
