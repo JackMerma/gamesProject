@@ -10,13 +10,13 @@ def validate(code):
             return [True, "You can't use print statement"]
     return [False, ""]
 
-def putDataArguments(code, data):
+def putDataArguments(code, data, oldCode):
     output = ''
     for line in code.splitlines():
         result = re.search("(.*)draw\((.*)\)", line)
 
         if result:
-            output += result.group(1) + "draw([" + result.group(2) + ", '" + data[0] + "', '" + data[1] + "'])"
+            output += result.group(1) + "draw([" + result.group(2) + ", '" + data[0] + "', '" + data[1] + "', '''" + oldCode + "'''])"
         else:
             output += line
         output += "\n"
@@ -31,7 +31,9 @@ def create(code, data):
 
     # running code
     try:
-        code = putDataArguments(code, data)
+        oldCode = code
+        code = putDataArguments(code, data, oldCode)
+        print(code)
         exec(code)
         return [False, ""]
     except SyntaxError as err:
