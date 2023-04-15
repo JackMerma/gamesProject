@@ -7,5 +7,5 @@ class ChessProblem(Problem):
     fileChessProblem = models.FileField(null=True, blank=True)
 
 class ChessSolution(Solution):
-    imageChessSolution = models.ImageField(null=True, blank=True)
+    imageChessSolution = models.BinaryField()
     fileChessSolution = models.FileField(null=True, blank=True)
