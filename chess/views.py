@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import ChessProblem
+from .models import ChessProblem, ChessSolution
 from .game.controller import create
+import base64
 
 def chessView(request,*args, **kargs):
     return render(request, 'chess.html')
@@ -21,13 +22,22 @@ def chessShowObjectView(request, myId):
     if request.GET:
         code = request.GET["input"]
 
+    # guardando imagen
     output = create(code, [str(request.user), str(myId)])
     error = output[1]
+
+    # consultando por el objeto guardado
+    try:
+        solutionObject = ChessSolution.objects.get(userName = request.user, idProblem = myId)
+        image = solutionObject.imageChessSolution
+    except:
+        image = None
 
     context = {
         'object': obj,
         'code': code,
         'error': error,
+        'image': image,
     }
 
     return render(request, 'chessProblemDescription.html', context)
