@@ -133,4 +133,4 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'chess_static'),
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'chess/media/images/chessSolutions')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
