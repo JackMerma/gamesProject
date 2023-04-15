@@ -46,3 +46,5 @@ def draw(data):
     lastSolution.save()
 
     # eliminando de static
+    if os.path.exists(path):
+        os.remove(path)
