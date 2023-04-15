@@ -23,13 +23,16 @@ def chessShowObjectView(request, myId):
         code = request.GET["input"]
 
     # guardando imagen
-    output = create(code, [str(request.user), str(myId)])
-    error = output[1]
+    error = create(code, [str(request.user), str(myId)])
 
     # consultando por el objeto guardado
     try:
         solutionObject = ChessSolution.objects.get(userName = request.user, idProblem = myId)
         image = solutionObject.imageChessSolution
+
+        # si no es una peticion GET
+        if not request.GET:
+            code = solutionObject.codeChessSolution
     except:
         image = None
 
