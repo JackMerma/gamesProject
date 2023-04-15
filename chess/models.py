@@ -7,5 +7,6 @@ class ChessProblem(Problem):
     fileChessProblem = models.FileField(null=True, blank=True)
 
 class ChessSolution(Solution):
-    imageChessSolution = models.ImageField(null=True, blank=True)
+    codeChessSolution = models.TextField()
+    imageChessSolution = models.ImageField(null=True, blank=True, upload_to='images/chessSolutions/')
     fileChessSolution = models.FileField(null=True, blank=True)
