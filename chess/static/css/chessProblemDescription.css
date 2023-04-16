@@ -29,8 +29,12 @@
     align-items: center;
     text-align: center;
 }
-#imageSolution, #coincidence{
+#imageSolutionContainer, #coincidence{
     width: 100%;
+}
+#imageSolution{
+    border: 2px solid grey;
+    border-radius: 5px;
 }
 #errorText{
     color: red;
@@ -38,7 +42,8 @@
 }
 #preOutput{
     display: flex;
-    border: 1px solid black;
+    border: 2px solid grey;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
     width: 350px;
