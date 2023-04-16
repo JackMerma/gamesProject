@@ -1,0 +1,46 @@
+.mainBox{
+    display: flex;
+}
+.leftBox{
+    width: 50%;
+}
+.rightBox{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.downBox{
+    display: flex;
+    justify-content: center;
+}
+.upBox{
+    width: 100%;
+}
+.rightBoxContent{
+    width: 100%;
+    display: block;
+}
+#resultContent{
+    width: 100%;
+}
+#resultContentContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#imageSolution, #coincidence{
+    width: 100%;
+}
+#errorText{
+    color: red;
+    text-align: left;
+}
+#preOutput{
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+}
