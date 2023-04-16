@@ -8,18 +8,24 @@ from django.core.files import File
 SIZE = 464
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# function que dibuja pixeles en un tipo de dato Image
 def putPixels(img, picture):
     for i in range(SIZE):
         for j in range(SIZE):
+            # para el fondo
             if i >= len(picture.img) or j >= len(picture.img[i]):
                 img.putpixel((j, i), BACKGROUND_COLOR)
+            # para las fichas
             else:
                 img.putpixel((j, i), color[picture.img[i][j]])
-
     return img
 
-
+# function alterada (parametros)
+# mientras que el usuario debe saber que draw recibe un objecto de tipo picture
+# verdaderamente se recibe una lista de datos (incluido el objeto picture)
+# esto se hace para realizar otros procedimientos (esta alteracion se hace en controller.py)
 def draw(data):
+    # data recibida en controller
     picture = data[0]
     userName = data[1]
     problemId = data[2]
@@ -50,6 +56,6 @@ def draw(data):
     lastSolution.codeChessSolution = oldCode
     lastSolution.save()
 
-    # eliminando de static
+    # eliminando la imagen generada de static
     if os.path.exists(path):
         os.remove(path)
