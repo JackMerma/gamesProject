@@ -68,8 +68,8 @@
                                 {% if image %}
                                 <div id='resultContentContent'>
                                     <div style='display: block'>
-                                        <div id='imageSolution'>
-                                            <img width='350' height='350' src='{{ image.url }}' alt='imageChessSolution'>
+                                        <div id='imageSolutionContainer'>
+                                            <img id='imageSolution' width='350' height='350' src='{{ image.url }}' alt='imageChessSolution'>
                                         </div>
                                         <div id='coincidence'>
                                             <p>{{ coincidence }}% of coincidence.</p>
