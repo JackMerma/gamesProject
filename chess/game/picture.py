@@ -1,4 +1,6 @@
 from . import colors
+SIZE = 464
+
 class Picture:
     def __init__(self, img):
         self.img = img
@@ -70,21 +72,56 @@ class Picture:
     def under(self, p):
         """ Devuelve una nueva figura poniendo la figura p sobre la
         figura actual """
-        sq = self.img[0][0] #para square negativo
-        if(sq == " "):
-            sq = "_"
 
-        su = []
-        for i in range(0, len(p.img)):
-            linea = ""
-            for u in p.img[i]:
-                if(u == " "):
-                    linea += sq
-                else:
-                    linea += u
-            su.append(linea)
+        # creacion de tablero
+        table = []
+        row = max([len(self.img), len(p.img)])
+        col = max([len(self.img[0]), len(p.img[0])])
 
-        return Picture(su)
+        line = ""
+        for i in range(row):
+            line += " "
+        for j in range(col):
+            table.append(line)
+
+        # superponer las fichas
+        output = []
+        # rellenado de self
+        for i in range(row):
+            if i >= len(self.img):
+                output.append(line)
+            else:
+                newLine = ""
+                for j in range(col):
+                    if j >= len(self.img[i]):
+                        newLine += " "
+                    else:
+                        newLine += self.img[i][j]
+                output.append(newLine)
+
+        newOutput = []
+
+        # rellenado de p
+        for i in range(row):
+            line = output[i]
+            if i >= len(p.img):
+                newOutput.append(line)
+            else:
+                newLine = ""
+                for j in range(col):
+                    if j >= len(p.img[0]):
+                        newLine += line[j]
+                    else:
+                        if j >= len(self.img[0]) or i >= len(self.img):
+                            newLine += p.img[i][j]
+                        else:
+                            if p.img[i][j] == " ":
+                                newLine += self.img[i][j]
+                            else:
+                                newLine += p.img[i][j]
+                newOutput.append(newLine)
+
+        return Picture(newOutput)
 
     def horizontalRepeat(self, n):
         """ Devuelve una nueva figura repitiendo la figura actual al costado
@@ -121,9 +158,23 @@ class Picture:
 
         return Picture(result)
 
-    def printImage(self):
+    def _printImage(self):
         s = ""
-        n = len(self.img)
-        for i in range(0,n):
-            s+=(self.img[i])+"\n"
+        # creacion de lineas de fondo
+        line = ""
+        for i in range(SIZE):
+            line += " "
+
+        # rellenar filas y columnas en img
+        for i in range(SIZE):
+            if i >= len(self.img):
+                s += line + "\n"
+            else:
+                newLine = ""
+                for j in range(SIZE):
+                    if j >= len(self.img[i]):
+                        newLine += " "
+                    else:
+                        newLine += self.img[i][j]
+                s += newLine + "\n"
         return s
