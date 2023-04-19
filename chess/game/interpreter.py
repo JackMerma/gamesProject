@@ -71,7 +71,7 @@ def draw(data):
     lastSolution.codeChessSolution = oldCode
     lastSolution.save()
 
-    # eliminando la imagen generada de static
+    # eliminando la imagen y texto generada de static
     if os.path.exists(path):
         os.remove(path)
     if os.path.exists(path_text):
