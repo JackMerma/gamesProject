@@ -40,7 +40,7 @@ def draw(data):
 
     #guardar texto generado en archivo
     file_text_name = userName + problemId + ".txt"
-    text_image = picture.printImage()
+    text_image = picture._printImage()
     path_text = os.path.join(BASE_DIR, "static/texts/" + file_text_name)
     with open(path_text, "w") as chessFileText :
         chessFileText.write(text_image)
