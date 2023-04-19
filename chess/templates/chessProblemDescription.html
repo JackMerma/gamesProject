@@ -31,7 +31,11 @@
                     <p>Here is the expected output:</p>
                     <!--Solucion esperada-->
                     <div class='leftBox'>
+                        {% if object.imageChessProblem %}
                         <img width='350' height='350' src='{{ object.imageChessProblem.url }}' alt='imageChessProblem'>
+                        {% else %}
+                        <img width='350' height='350' src='#' alt='imageChessProblem'>
+                        {% endif %}
                     </div>
                 </div>
                 <!--Lugar de solucion y visualizacion de la salida-->
