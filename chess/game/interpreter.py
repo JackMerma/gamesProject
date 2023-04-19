@@ -38,6 +38,14 @@ def draw(data):
     path = os.path.join(BASE_DIR, "static/images/" + file_name)
     img.save(path)
 
+    #guardar texto generado en archivo
+    file_text_name = userName + problemId + ".txt"
+    text_image = picture.printImage()
+    path_text = os.path.join(BASE_DIR, "static/texts/" + file_text_name)
+    with open(path_text, "w") as chessFileText :
+        chessFileText.write(text_image)
+
+
     # guardando en la bd
     try:
         lastSolution = ChessSolution.objects.get(userName = data[1], idProblem = int(data[2]))
@@ -47,15 +55,24 @@ def draw(data):
     if lastSolution:
         if lastSolution.imageChessSolution:
             lastSolution.imageChessSolution.delete()
+        if lastSolution.fileChessSolution:
+            lastSolution.fileChessSolution.delete()
     else:
         lastSolution = ChessSolution.objects.create(userName = data[1], idProblem = int(data[2]))
 
     with open(path, 'rb') as image_file:
         file = File(image_file)
         lastSolution.imageChessSolution.save(file_name, file)
+
+    with open(path_text, 'rb') as text_file:
+        file = File(text_file)
+        lastSolution.fileChessSolution.save(file_text_name, file)
+
     lastSolution.codeChessSolution = oldCode
     lastSolution.save()
 
     # eliminando la imagen generada de static
     if os.path.exists(path):
         os.remove(path)
+    if os.path.exists(path_text):
+        os.remove(path_text)
