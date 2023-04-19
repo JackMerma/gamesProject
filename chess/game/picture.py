@@ -120,3 +120,10 @@ class Picture:
             result.append(line)
 
         return Picture(result)
+
+    def printImage(self):
+        s = ""
+        n = len(self.img)
+        for i in range(0,n):
+            s+=(self.img[i])
+        return s
