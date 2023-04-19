@@ -125,5 +125,5 @@ class Picture:
         s = ""
         n = len(self.img)
         for i in range(0,n):
-            s+=(self.img[i])
+            s+=(self.img[i])+"\n"
         return s
