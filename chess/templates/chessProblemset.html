@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <header>
-        <title>Problemset</title>
-    </header>
-    <body>
-        <h2>Problemset</h2>
-        {% for instance in objectList %}
-        <p>
-        <a href="{{ instance.get_absolute_url }}">
-            {{ instance.id  }} - {{ instance.nameProblem }}
-        </a>
-        </p>
-        {% endfor %}
+{% extends 'general-content.html' %}
+{% block content %}
 
-        <a href='../'>back to chess</a>
-    </body>
-</html>
+<h2>Problemset</h2>
+{% for instance in objectList %}
+<p>
+<a href="{{ instance.get_absolute_url }}">
+    {{ instance.id  }} - {{ instance.nameProblem }}
+</a>
+</p>
+{% endfor %}
 
+<a href='../'>back to chess</a>
+
+{% endblock %}

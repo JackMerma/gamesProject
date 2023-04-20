@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <header>
-        <title>chess</title>
-    </header>
-    <body>
-      <h1>Bienvenido al GameChess</h1>
-      <h2>Descripcion Piezas</h2>
-      <a href="problemset/">Listado de Problemas</a>
-    </body>
-</html>
+{% extends 'general-content.html' %}
+{% block content %}
 
+<h1>Chess Game</h1>
+<h2>Description</h2>
+<h3>About the game</h3>
+<h3>Pieces</h3>
+<h3>Functions</h3>
+<h3>Problems</h3>
+<h2>Play</h2>
+<a href="problemset/">Problemset</a>
+
+{% endblock %}

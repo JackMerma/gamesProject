@@ -1,11 +1,24 @@
-<div>
-{% if user.is_authenticated %}
-<a href='account/logout'>Log out</a>
-<br>
-
-<h2>Hi {{user}}!</h2>
-{% else %}
-<a href='account/login'>Log in</a>
-<a href='account/register'>Register</a>
-{% endif %}
-</div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Project Games</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Games <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/chess">Chess Game</a></li>
+                </ul>
+            </li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li><a href="account/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+            {% else %}
+            <li><a href="account/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="account/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
