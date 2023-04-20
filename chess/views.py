@@ -36,15 +36,13 @@ def chessShowObjectView(request, myId):
     except:
         image = None
 
-    # consultando % de coincidencia
-    coincidence = 96.3
 
     context = {
         'object': obj,
+        'objectSolution': solutionObject,
         'code': code,
         'error': error,
         'image': image,
-        'coincidence': coincidence,
     }
 
     return render(request, 'chessProblemDescription.html', context)
