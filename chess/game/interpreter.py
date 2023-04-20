@@ -50,7 +50,7 @@ def draw(data):
         porcentageOfMatch = calculatePorcentage(path_text, problemId)
 
 
-    
+
     # guardando en la bd
     try:
         lastSolution = ChessSolution.objects.get(userName = data[1], idProblem = int(data[2]))
@@ -74,7 +74,7 @@ def draw(data):
         lastSolution.fileChessSolution.save(file_text_name, file)
 
     lastSolution.codeChessSolution = oldCode
-    lastSolution.matchingChessSolution = format(porcentageOfMatch,".2f") 
+    lastSolution.matchingChessSolution = format(porcentageOfMatch,".2f")
     print("porcentageOfMatch: " + str(porcentageOfMatch))
     lastSolution.save()
 
@@ -103,9 +103,9 @@ def calculatePorcentage(path_text_solution,problemId):
     else:
         matches = 0
         for line1, line2 in zip(lines1, lines2):
-            if line1 == line2:
-                matches += 1
-
-        porcentage = matches / len(lines1) * 100
+            for i in range(SIZE):
+                if line1[i] == line2[i]:
+                    matches += 1
+        porcentage = (matches * 100) / (SIZE * SIZE)
     return porcentage
 
