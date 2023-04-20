@@ -131,6 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'chess_static'),
+    os.path.join(BASE_DIR, 'homePage_static'),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
