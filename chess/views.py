@@ -18,9 +18,9 @@ def chessShowObjectView(request, myId):
     code = ""
     error = ""
 
-    # GET request
-    if request.GET:
-        code = request.GET["input"]
+    # POST request
+    if request.POST:
+        code = request.POST["input"]
 
     # guardando imagen
     error = create(code, [str(request.user), str(myId)])
@@ -28,8 +28,8 @@ def chessShowObjectView(request, myId):
     # consultando por el objeto guardado
     try:
         solutionObject = ChessSolution.objects.get(userName = request.user, idProblem = myId)
-        # si no es una peticion GET
-        if not request.GET:
+        # si no es una peticion POST
+        if not request.POST:
             code = solutionObject.codeChessSolution
     except:
         solutionObject = None

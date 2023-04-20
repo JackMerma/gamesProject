@@ -44,7 +44,8 @@
                         <!--Lugar de escritura de codigo-->
                         <div class='upBox'>
                             <div class='codeBox'>
-                                <form action='.' method='GET'>
+                                <form action='.' method='POST'>
+                                    {% csrf_token %}
                                     <textarea id='editor' name='input'>{{ code }}</textarea>
                                     <script>
                                         var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
