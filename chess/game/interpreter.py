@@ -42,11 +42,15 @@ def draw(data):
     file_text_name = userName + problemId + ".txt"
     text_image = picture._printImage()
     path_text = os.path.join(BASE_DIR, "static/texts/" + file_text_name)
+
+    #varialbe de porcentaje para mostrar al usuario
+    porcentageOfMatch = 0
     with open(path_text, "w") as chessFileText :
         chessFileText.write(text_image)
-        calculatePorcentage(path_text, problemId)
+        porcentageOfMatch = calculatePorcentage(path_text, problemId)
 
 
+    
     # guardando en la bd
     try:
         lastSolution = ChessSolution.objects.get(userName = data[1], idProblem = int(data[2]))
@@ -70,6 +74,8 @@ def draw(data):
         lastSolution.fileChessSolution.save(file_text_name, file)
 
     lastSolution.codeChessSolution = oldCode
+    lastSolution.matchingChessSolution = format(porcentageOfMatch,".2f") 
+    print("porcentageOfMatch: " + str(porcentageOfMatch))
     lastSolution.save()
 
     # eliminando la imagen y texto generada de static
@@ -84,26 +90,22 @@ def calculatePorcentage(path_text_solution,problemId):
     except:
         problemSolution = None
 
-    print("url: " + problemSolution.fileChessProblem.url)
-    #ruteAux = os.path.join(BASE_DIR, "static" + problemSolution.fileChessProblem.url)
-    ruteAux = "/home/darwin/gameProject/gamesProject/media" + problemSolution.fileChessProblem.url
-    print("ruta mediante ruteAux: " + ruteAux)
-    print("ruta argumento:  " + path_text_solution)
+    urlProblemSolution = problemSolution.fileChessProblem.path
 
     with open(path_text_solution, 'r') as file1:
         lines1 = file1.readlines()
 
-    with open(ruteAux, 'r') as file2:
+    with open(urlProblemSolution, 'r') as file2:
         lines2 = file2.readlines()
 
     if len(lines1) != len(lines2):
-        print('Los archivos no tienen la misma cantidad de líneas')
+        pass
     else:
-        coincidencias = 0
+        matches = 0
         for line1, line2 in zip(lines1, lines2):
             if line1 == line2:
-                coincidencias += 1
+                matches += 1
 
-        porcentaje = coincidencias / len(lines1) * 100
-        print(f'El porcentaje de coincidencia entre los archivos es: {porcentaje}%')
+        porcentage = matches / len(lines1) * 100
+    return porcentage
 
