@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Required meta tags-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Bootstrap CSS and other CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="">
+        <link rel='stylesheet' href='/static/css/aditionalNav.css'/>
+
+        <title>Home</title>
+    </head>
+    <body>
+        <div>
+            {% include 'nav.html' %}
+        </div>
+        <div>
+            <div class="container-fluid text-center">    
+                <div class="row content">
+                    <div class="col-sm-2 sidenav">
+                        <!--Seccion de links adicionales-->
+                    </div>
+                    <div class="col-sm-8 text-left"> 
+                        {% block content %}
+                        Reemplazará a todos los campos generales llamados
+                        {% endblock %}
+                    </div>
+                    <div class="col-sm-2 sidenav">
+                        <!--Seccion de ads adicionales u otra seccion-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
