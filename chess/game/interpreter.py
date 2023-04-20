@@ -1,6 +1,6 @@
 from .colors import *
 from PIL import Image
-from chess.models import ChessSolution
+from chess.models import *
 import os
 from pathlib import Path
 from django.core.files import File
@@ -44,6 +44,7 @@ def draw(data):
     path_text = os.path.join(BASE_DIR, "static/texts/" + file_text_name)
     with open(path_text, "w") as chessFileText :
         chessFileText.write(text_image)
+        calculatePorcentage(path_text, problemId)
 
 
     # guardando en la bd
@@ -76,3 +77,33 @@ def draw(data):
         os.remove(path)
     if os.path.exists(path_text):
         os.remove(path_text)
+
+def calculatePorcentage(path_text_solution,problemId):
+    try:
+        problemSolution = ChessProblem.objects.get(id = int(problemId))
+    except:
+        problemSolution = None
+
+    print("url: " + problemSolution.fileChessProblem.url)
+    #ruteAux = os.path.join(BASE_DIR, "static" + problemSolution.fileChessProblem.url)
+    ruteAux = "/home/darwin/gameProject/gamesProject/media" + problemSolution.fileChessProblem.url
+    print("ruta mediante ruteAux: " + ruteAux)
+    print("ruta argumento:  " + path_text_solution)
+
+    with open(path_text_solution, 'r') as file1:
+        lines1 = file1.readlines()
+
+    with open(ruteAux, 'r') as file2:
+        lines2 = file2.readlines()
+
+    if len(lines1) != len(lines2):
+        print('Los archivos no tienen la misma cantidad de líneas')
+    else:
+        coincidencias = 0
+        for line1, line2 in zip(lines1, lines2):
+            if line1 == line2:
+                coincidencias += 1
+
+        porcentaje = coincidencias / len(lines1) * 100
+        print(f'El porcentaje de coincidencia entre los archivos es: {porcentaje}%')
+
