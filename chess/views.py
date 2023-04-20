@@ -28,13 +28,11 @@ def chessShowObjectView(request, myId):
     # consultando por el objeto guardado
     try:
         solutionObject = ChessSolution.objects.get(userName = request.user, idProblem = myId)
-        image = solutionObject.imageChessSolution
-
         # si no es una peticion GET
         if not request.GET:
             code = solutionObject.codeChessSolution
     except:
-        image = None
+        solutionObject = None
 
 
     context = {
@@ -42,7 +40,6 @@ def chessShowObjectView(request, myId):
         'objectSolution': solutionObject,
         'code': code,
         'error': error,
-        'image': image,
     }
 
     return render(request, 'chessProblemDescription.html', context)
