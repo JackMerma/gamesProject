@@ -47,7 +47,7 @@ def loginView(request):
             auth.login(request, user)
             return redirect("/")
         else:
-            error = 'invalid credentials'
+            error = 'The username or the password is wrong'
 
         context = {
             'error': error,
