@@ -98,18 +98,14 @@
                                     </div>
                                     {% if objectSolution.matchingChessSolution == 100.00 %}
                                     <div id='coincidence' style='background-color: #223D3A;'>
-                                        <p style='color: #00B8A3;'>Accepted (100% of coincidence)</p>
+                                        <p style='color: #00B8A3;'><b>Accepted (100% of coincidence)</b></p>
                                     </div>
                                     {% else %}
                                     <div id='coincidence' style='background-color: #502c2b;'>
-                                        <p style='color: #D95B58;'>Wrong Answer ({{ objectSolution.matchingChessSolution }} % of coincidence)</p>
+                                        <p style='color: #D95B58;'><b>Wrong Answer ({{ objectSolution.matchingChessSolution }} % of coincidence)</b></p>
                                     </div>
                                     {% endif %}
                                 </div>
-                            </div>
-                            {% else %}
-                            <div id='preOutput'>
-                                <p>Your output will be displayed here.</p>
                             </div>
                             {% endif %}
                         </div>
