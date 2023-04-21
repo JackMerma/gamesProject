@@ -16,14 +16,12 @@ def chessListView(request,*args, **kargs):
 def chessShowObjectView(request, myId):
     obj = get_object_or_404(ChessProblem, id = myId)
     code = ""
-    error = ""
+    error = ["", ""]
 
     # POST request
     if request.POST:
         code = request.POST["input"]
-
-    # guardando imagen
-    error = create(code, [str(request.user), str(myId)])
+        error = create(code, [str(request.user), str(myId)])
 
     # consultando por el objeto guardado
     try:
@@ -31,11 +29,12 @@ def chessShowObjectView(request, myId):
         # si no es una peticion POST
         if not request.POST:
             code = solutionObject.codeChessSolution
+
     except:
         solutionObject = None
 
+    print(error)
 
-    print("ERROR: ", error)
     context = {
         'object': obj,
         'objectSolution': solutionObject,

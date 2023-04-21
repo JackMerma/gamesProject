@@ -2,6 +2,17 @@ from .interpreter import draw
 from .chessPictures import *
 import sys, traceback, re
 
+# funcioon que valida el uso de draw
+def validateDrawFunction(code):
+    drawCount = 0
+    for line in code.splitlines():
+        if re.search(".*draw\(.*\)", line):
+            drawCount += 1
+    if drawCount == 1:
+        return [False, ["", ""]]
+    else:
+        return [True, ["RuntimeError", "You must use the draw sentence"]]
+
 # funcion que valida que NO hayan algunas sentenicas aceptadas como:
 #   print()
 #   import
@@ -37,6 +48,9 @@ def putDataArguments(code, data, oldCode):
 # retorna un booleano (error) y el error
 def create(code, data):
     # validacion
+    exp = validateDrawFunction(code)
+    if exp[0]:
+        return exp[1] # retornando el error
     exp = validate(code)
     if exp[0]:
         return exp[1] # retornando el error
