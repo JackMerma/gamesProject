@@ -29,9 +29,11 @@
         <div class='mainBox'>
             <!--Lugar de visualizacion del problema-->
             <div class='leftBox'>
-                <h3>{{ object.nameProblem }}</h3>
+                <h3>Problem</h3>
                 <p>{{ object.description }}</p>
-                <p>Here is the expected output:</p>
+                <hr>
+
+                <h3>Output</h3>
                 <!--Solucion esperada-->
                 <div class='imageBox'>
                     {% if object.imageChessProblem %}
@@ -40,6 +42,15 @@
                     <img width='350' height='350' src='#' alt='imageChessProblem'>
                     {% endif %}
                 </div>
+                <hr>
+
+                <h3>Hint</h3>
+                <p>{{ object.hint }}</p>
+                <hr>
+
+                <h3>Author</h3>
+                <p>admin</p>
+
             </div>
             <!--Lugar de solucion y visualizacion de la salida-->
             <div class='rightBox'>
