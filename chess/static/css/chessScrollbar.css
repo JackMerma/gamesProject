@@ -1,0 +1,10 @@
+.leftBox::-webkit-scrollbar, .rightBox::-webkit-scrollbar{
+    width: 5px;
+}
+.leftBox::-webkit-scrollbar-track, .rightBox::-webkit-scrollbar-track{
+    border-radius: 100px;
+}
+.leftBox::-webkit-scrollbar-thumb, .rightBox::-webkit-scrollbar-thumb{
+    background-color: #B2BABB;
+    border-radius: 100px;
+}

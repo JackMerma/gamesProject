@@ -10,6 +10,7 @@
         <script src='/static/codemirror/addon/edit/matchbrackets.js'></script>
 
         <link rel='stylesheet' href='/static/codemirror/theme/nord.css'/>
+        <link rel='stylesheet' href='/static/codemirror/theme/material.css'/>
         <link rel='stylesheet' href='/static/codemirror/theme/lucario.css'/>
         <link rel='stylesheet' href='/static/codemirror/theme/gruvbox-dark.css'/>
         <link rel='stylesheet' href='/static/codemirror/theme/eclipse.css'/>
@@ -19,6 +20,7 @@
 
         <!--otro-->
         <link rel='stylesheet' href='/static/css/chessProblemDescription.css'/>
+        <link rel='stylesheet' href='/static/css/chessScrollbar.css'/>
         <link rel='stylesheet' href='/static/css/chessProblemDescriptionNav.css'/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -42,7 +44,7 @@
                     <img width='350' height='350' src='#' alt='imageChessProblem'>
                     {% endif %}
                 </div>
-                <hr>
+                <hr/>
 
                 <h3>Hint</h3>
                 <p>{{ object.hint }}</p>
@@ -64,23 +66,27 @@
                                 <script>
                                     var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
                                         mode: "python",
-                                        theme: "mdn-like",
+                                        theme: "material",
                                         lineNumbers: true
                                     });
                                     //editor.setSize("550", "300");
                                 </script>
-                                <br>
-                                <br>
-                                <input type='submit' value='Send'/>
+                                <div class='button-submit'>
+                                    <br>
+                                    <button type="submit" class='btn btn-success'>Send</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                     <br>
                     <!--Solucion de cada usuario-->
                     <div class='downBox'>
-                        {% if error != ''%}
-                        <div id='resultContent'>
-                            <p id='errorText'>{{ error }}</p>
+                        {% if error.0 != ''%}
+                        <div id='resultContent' style='margin-left:20px;'>
+                            <h3 id='errorName'>{{ error.0 }}</h3>
+                            <div id='errorContent'>
+                                <p id='errorText'>{{ error.1 }}</p>
+                            </div>
                         </div>
                         {% else %}
                         <div id='resultContent' style='display:flex; justify-content: center;'>
@@ -90,9 +96,15 @@
                                     <div id='imageSolutionContainer'>
                                         <img id='imageSolution' width='350' height='350' src='{{ objectSolution.imageChessSolution.url }}' alt='imageChessSolution'>
                                     </div>
-                                    <div id='coincidence'>
-                                        <p>{{ objectSolution.matchingChessSolution }}% of coincidence.</p>
+                                    {% if objectSolution.matchingChessSolution == 100.00 %}
+                                    <div id='coincidence' style='background-color: #223D3A;'>
+                                        <p style='color: #00B8A3;'>Accepted (100% of coincidence)</p>
                                     </div>
+                                    {% else %}
+                                    <div id='coincidence' style='background-color: #502c2b;'>
+                                        <p style='color: #D95B58;'>Wrong Answer ({{ objectSolution.matchingChessSolution }} % of coincidence)</p>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             {% else %}

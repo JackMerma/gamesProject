@@ -3,25 +3,38 @@ html, body{
     overflow-x: hidden;
     overflow-y: hidden;
 }
+img{
+    border-radius: 2px;
+}
 .mainBox{
     display: flex;
     flex-direction: row;
     height: 100%;
     margin-top: 80px;
+    padding: 7px;
+    background-color: #1a1a1a;
 }
 .leftBox{
     flex-basis: 50%;
     padding: 20px;
     font-size: 16px;
+    margin-right: 7px;
+}
+.leftBox>hr{
+    border-color: #616161;
 }
 .rightBox{
+    padding: 5px;
     display: flex;
     justify-content: center;
 }
 .leftBox, .rightBox{
     width: 50%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 94px);
     overflow-y: scroll;
+    background-color: #212121;
+    border-radius: 2px;
+    color: #e0e0e0;
 }
 .leftBox:hover, .rightBox:hover{
     overflow-y: auto;
@@ -38,6 +51,21 @@ html, body{
     width: 100%;
     display: block;
 }
+.imageBox{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.button-submit{
+    background-color: #263238;
+    padding: 13px;
+    padding-bottom: 45px;
+    border-radius: 2px;
+}
+.btn{
+    float: right;
+}
 #resultContent{
     width: 100%;
 }
@@ -51,14 +79,6 @@ html, body{
 #imageSolutionContainer, #coincidence{
     width: 100%;
 }
-#imageSolution{
-    border: 2px solid grey;
-    border-radius: 5px;
-}
-#errorText{
-    color: red;
-    text-align: left;
-}
 #preOutput{
     display: flex;
     border: 2px solid grey;
@@ -68,9 +88,27 @@ html, body{
     width: 350px;
     height: 350px;
 }
-.imageBox{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+#errorContent{
+    background-color: #402c2b;
+    border-radius: 7px;
+    margin-right: 20px;
+}
+#errorName{
+    color: #DD4441;
+    margin-bottom: 20px;
+}
+#errorText{
+    color: #D95B58;
+    text-align: left;
+    padding: 15px;
+    font-size: 15px;
+}
+#coincidence{
+    margin-top: 20px;
+    border-radius: 2px;
+}
+#coincidence>p{
+    padding: 15px;
+    color: #D95B58;
+    font-size: 15px;
 }
