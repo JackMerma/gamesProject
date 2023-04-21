@@ -10,10 +10,10 @@ def validate(code):
     for line in code.splitlines():
         # uso de expresiones regulares para identificar casos independientes
         if re.search("^from.*import.*", line) or re.search("^import", line):
-            return [True, "You can't use import statement"]
+            return [True, ["RuntimeError", "You can't use import statement"]]
         if re.search("^print.*", line):
-            return [True, "You can't use print statement"]
-    return [False, ""]
+            return [True, ["RuntimeError", "You can't use print statement"]]
+    return [False, ["", ""]]
 
 # Funcion que añade dos argumentos a la verdadera funcion draw
 # esto se hace para poder guardar la data generada al correr el codigo
@@ -46,7 +46,7 @@ def create(code, data):
         oldCode = code # necesario para guardar la codigo original de cada usuario
         code = putDataArguments(code, data, oldCode)
         exec(code) # de lo demás se encargara la misma funcion draw()
-        return ""
+        return ["", ""]
     except SyntaxError as err:
         error_class = err.__class__.__name__
         detail = err.args[0]
@@ -56,4 +56,4 @@ def create(code, data):
         detail = err.args[0]
         cl, exc, tb = sys.exc_info()
         line_number = traceback.extract_tb(tb)[-1][1]
-    return "%s at line %d: %s" % (error_class, line_number, detail)
+    return [error_class, "Line %d: %s" % (line_number, detail)]

@@ -35,6 +35,7 @@ def chessShowObjectView(request, myId):
         solutionObject = None
 
 
+    print("ERROR: ", error)
     context = {
         'object': obj,
         'objectSolution': solutionObject,
