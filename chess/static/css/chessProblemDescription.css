@@ -1,15 +1,31 @@
+html, body{
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 .mainBox{
     display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin-top: 80px;
 }
 .leftBox{
-    width: 50%;
+    flex-basis: 50%;
 }
 .rightBox{
-    width: 50%;
     display: flex;
     justify-content: center;
 }
+.leftBox, .rightBox{
+    width: 50%;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+}
+.leftBox:hover, .rightBox:hover{
+    overflow-y: auto;
+}
 .downBox{
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -28,6 +44,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 #imageSolutionContainer, #coincidence{
     width: 100%;

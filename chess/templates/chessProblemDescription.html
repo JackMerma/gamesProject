@@ -19,82 +19,81 @@
 
         <!--otro-->
         <link rel='stylesheet' href='/static/css/chessProblemDescription.css'/>
+        <link rel='stylesheet' href='/static/css/chessProblemDescriptionNav.css'/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     </header>
     <body>
         {% load static %}
-        <div>
-            <div class='mainBox'>
-                <!--Lugar de visualizacion del problema-->
-                <div class='leftBox'>
-                    <h3>{{ object.nameProblem }}</h3>
-                    <p>{{ object.description }}</p>
-                    <p>Here is the expected output:</p>
-                    <!--Solucion esperada-->
-                    <div class='leftBox'>
-                        {% if object.imageChessProblem %}
-                        <img width='350' height='350' src='{{ object.imageChessProblem.url }}' alt='imageChessProblem'>
-                        {% else %}
-                        <img width='350' height='350' src='#' alt='imageChessProblem'>
-                        {% endif %}
-                    </div>
+        {% include 'chess-nav.html' %}
+        <div class='mainBox'>
+            <!--Lugar de visualizacion del problema-->
+            <div class='leftBox'>
+                <h3>{{ object.nameProblem }}</h3>
+                <p>{{ object.description }}</p>
+                <p>Here is the expected output:</p>
+                <!--Solucion esperada-->
+                <div class='imageBox'>
+                    {% if object.imageChessProblem %}
+                    <img width='350' height='350' src='{{ object.imageChessProblem.url }}' alt='imageChessProblem'>
+                    {% else %}
+                    <img width='350' height='350' src='#' alt='imageChessProblem'>
+                    {% endif %}
                 </div>
-                <!--Lugar de solucion y visualizacion de la salida-->
-                <div class='rightBox'>
-                    <div class='rightBoxContent'>
-                        <!--Lugar de escritura de codigo-->
-                        <div class='upBox'>
-                            <div class='codeBox'>
-                                <form action='.' method='POST'>
-                                    {% csrf_token %}
-                                    <textarea id='editor' name='input'>{{ code }}</textarea>
-                                    <script>
-                                        var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
-                                            mode: "python",
-                                            theme: "mdn-like",
-                                            lineNumbers: true
-                                        });
-                                        //editor.setSize("550", "300");
-                                    </script>
-                                    <br>
-                                    <br>
-                                    <input type='submit' value='Send'/>
-                                </form>
-                            </div>
+            </div>
+            <!--Lugar de solucion y visualizacion de la salida-->
+            <div class='rightBox'>
+                <div class='rightBoxContent'>
+                    <!--Lugar de escritura de codigo-->
+                    <div class='upBox'>
+                        <div class='codeBox'>
+                            <form action='.' method='POST'>
+                                {% csrf_token %}
+                                <textarea id='editor' name='input'>{{ code }}</textarea>
+                                <script>
+                                    var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+                                        mode: "python",
+                                        theme: "mdn-like",
+                                        lineNumbers: true
+                                    });
+                                    //editor.setSize("550", "300");
+                                </script>
+                                <br>
+                                <br>
+                                <input type='submit' value='Send'/>
+                            </form>
                         </div>
-                        <br>
-                        <!--Solucion de cada usuario-->
-                        <div class='downBox'>
-                            {% if error != ''%}
-                            <div id='resultContent'>
-                                <p id='errorText'>{{ error }}</p>
-                            </div>
-                            {% else %}
-                            <div id='resultContent' style='display:flex; justify-content: center;'>
-                                {% if objectSolution %}
-                                <div id='resultContentContent'>
-                                    <div style='display: block'>
-                                        <div id='imageSolutionContainer'>
-                                            <img id='imageSolution' width='350' height='350' src='{{ objectSolution.imageChessSolution.url }}' alt='imageChessSolution'>
-                                        </div>
-                                        <div id='coincidence'>
-                                            <p>{{ objectSolution.matchingChessSolution }}% of coincidence.</p>
-                                        </div>
+                    </div>
+                    <br>
+                    <!--Solucion de cada usuario-->
+                    <div class='downBox'>
+                        {% if error != ''%}
+                        <div id='resultContent'>
+                            <p id='errorText'>{{ error }}</p>
+                        </div>
+                        {% else %}
+                        <div id='resultContent' style='display:flex; justify-content: center;'>
+                            {% if objectSolution %}
+                            <div id='resultContentContent'>
+                                <div style='display: block'>
+                                    <div id='imageSolutionContainer'>
+                                        <img id='imageSolution' width='350' height='350' src='{{ objectSolution.imageChessSolution.url }}' alt='imageChessSolution'>
+                                    </div>
+                                    <div id='coincidence'>
+                                        <p>{{ objectSolution.matchingChessSolution }}% of coincidence.</p>
                                     </div>
                                 </div>
-                                {% else %}
-                                <div id='preOutput'>
-                                    <p>Your output will be displayed here.</p>
-                                </div>
-                                {% endif %}
+                            </div>
+                            {% else %}
+                            <div id='preOutput'>
+                                <p>Your output will be displayed here.</p>
                             </div>
                             {% endif %}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-
-        <a href='/chess/problemset/'>back to problemset</a>
     </body>
 </html>
-
