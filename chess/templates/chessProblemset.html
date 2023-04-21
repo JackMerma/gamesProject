@@ -2,14 +2,16 @@
 {% block content %}
 
 <h2>Problemset</h2>
-{% for instance in objectList %}
-<p>
-<a href="{{ instance.get_absolute_url }}">
-    {{ instance.id  }} - {{ instance.nameProblem }}
-</a>
-</p>
-{% endfor %}
+<ul>
+    {% for instance in objectList %}
+    <p>
+    <li><a href="{{ instance.get_absolute_url }}">
+            {{ instance.nameProblem }}
+        </a></li>
+    </p>
+    {% endfor %}
+</ul>
 
-<a href='../'>back to chess</a>
+<a href='/chess'>back to chess</a>
 
 {% endblock %}
