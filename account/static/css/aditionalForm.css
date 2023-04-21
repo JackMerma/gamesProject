@@ -1,0 +1,13 @@
+.form-control{
+    width: 100%;
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+}
+.form-box{
+    width: 50%;
+}
+#errorMessage{
+    color: red;
+}
